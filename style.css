@@ -192,7 +192,7 @@
             /* max-width: 700px; */
             margin: 0 auto;
             /* padding: 2rem; */
-            background-image: url(cover.jpg);
+            background-image: url(/cover.jpg);
             background-position: center;
             background-size: cover;
             width: 948px;
