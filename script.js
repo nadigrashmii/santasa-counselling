@@ -89,9 +89,9 @@ startAutoSwitching();
             const closeBtn = document.getElementById("closePopup");
             const contactBtn = document.getElementById("contactUsBtn");
             
-            // Variables for mobile navigation
-            const toggleButton = document.getElementById("mobile-nav-toggle");
-            const navMenu = document.getElementById("nav-menu");
+            // // Variables for mobile navigation
+            // const toggleButton = document.getElementById("mobile-nav-toggle");
+            // const navMenu = document.getElementById("nav-menu");
             
             // Show popup when page loads (with a slight delay)
             setTimeout(function() {
