@@ -362,14 +362,14 @@ nav a:hover::after {
         
 
         
-        .mobile-nav-toggle {
+        /* .mobile-nav-toggle {
             display: none;
             background: transparent;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
-        }
+        } */
         
         .hero {
             min-height: 100vh;
