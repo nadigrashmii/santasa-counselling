@@ -505,7 +505,7 @@ nav a:hover::after {
         }
 
         .services-container {
-            display: grid;
+            display:grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
@@ -516,6 +516,7 @@ nav a:hover::after {
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: all 0.3s;
+            margin-bottom: 50px;
         }
         
         .service-card:hover {
@@ -1002,6 +1003,3 @@ nav a:hover::after {
         .read-more-btn:hover {
             background-color: #add8e6;
         }
-
-
-
