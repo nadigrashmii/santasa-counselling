@@ -48,121 +48,106 @@ function prevTestimonial() {
     updateTestimonial();
 }
 
-// Auto-switching every 5 seconds
 function startAutoSwitching() {
     interval = setInterval(nextTestimonial, 5000);
 }
 
-// Restart auto-switching when the user interacts
 function resetAutoSwitching() {
     clearInterval(interval);
     startAutoSwitching();
 }
 
-document.querySelector(".prev").addEventListener("click", () => {
-    prevTestimonial();
-    resetAutoSwitching();
-});
-
-document.querySelector(".next").addEventListener("click", () => {
-    nextTestimonial();
-    resetAutoSwitching();
-});
-
-document.querySelectorAll(".dot").forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-        currentTestimonial = index;
-        updateTestimonial();
+document.addEventListener("DOMContentLoaded", function () {
+    // Testimonials
+    document.querySelector(".prev").addEventListener("click", () => {
+        prevTestimonial();
         resetAutoSwitching();
     });
-});
 
-updateTestimonial();
-startAutoSwitching();
+    document.querySelector(".next").addEventListener("click", () => {
+        nextTestimonial();
+        resetAutoSwitching();
+    });
 
-
-
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Variables for popup
-            const popup = document.getElementById("contactPopup");
-            const closeBtn = document.getElementById("closePopup");
-            const contactBtn = document.getElementById("contactUsBtn");
-            
-            // // Variables for mobile navigation
-            // const toggleButton = document.getElementById("mobile-nav-toggle");
-            // const navMenu = document.getElementById("nav-menu");
-            
-            // Show popup when page loads (with a slight delay)
-            setTimeout(function() {
-                popup.classList.add("active");
-            }, 1000);
-            
-            // Close popup when X is clicked
-            closeBtn.addEventListener("click", function() {
-                popup.classList.remove("active");
-            });
-            
-            // Close popup when Contact Us button is clicked
-            contactBtn.addEventListener("click", function() {
-                popup.classList.remove("active");
-                // Smooth scroll to contact section
-                document.querySelector("#contact").scrollIntoView({
-                    behavior: "smooth"
-                });
-            });
-            
-            // Close popup when clicking outside the popup content
-            popup.addEventListener("click", function(e) {
-                if (e.target === popup) {
-                    popup.classList.remove("active");
-                }
-            });
-            
-            // Mobile navigation toggle - Fixed
-            if (toggleButton) {
-                toggleButton.addEventListener("click", function() {
-                    if (navMenu) {
-                        navMenu.classList.toggle("active");
-                        console.log("Mobile menu toggled");
-                    } else {
-                        console.error("Navigation menu element not found");
-                    }
-                });
-            } else {
-                console.error("Toggle button not found");
-            }
-            
-            // Handle dropdown menus in mobile view
-            const dropdowns = document.querySelectorAll(".dropdown");
-            dropdowns.forEach(function(dropdown) {
-                const link = dropdown.querySelector("a");
-                if (link) {
-                    link.addEventListener("click", function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            dropdown.classList.toggle("active");
-                        }
-                    });
-                }
-            });
-            
-            // Read more buttons functionality
-            const readMoreBtns = document.querySelectorAll(".read-more-btn");
-            readMoreBtns.forEach(function(btn) {
-                btn.addEventListener("click", function() {
-                    const shortText = this.parentElement.querySelector(".short-text");
-                    const fullText = this.parentElement.querySelector(".full-text");
-                    
-                    shortText.classList.toggle("hidden");
-                    fullText.classList.toggle("hidden");
-                    
-                    if (this.textContent === "Read More") {
-                        this.textContent = "Read Less";
-                    } else {
-                        this.textContent = "Read More";
-                    }
-                });
-            });
+    document.querySelectorAll(".dot").forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            currentTestimonial = index;
+            updateTestimonial();
+            resetAutoSwitching();
         });
-    
+    });
+
+    updateTestimonial();
+    startAutoSwitching();
+
+    // Popup
+    const popup = document.getElementById("contactPopup");
+    const closeBtn = document.getElementById("closePopup");
+    const contactBtn = document.getElementById("contactUsBtn");
+
+    setTimeout(function () {
+        popup.classList.add("active");
+    }, 1000);
+
+    closeBtn.addEventListener("click", function () {
+        popup.classList.remove("active");
+    });
+
+    contactBtn.addEventListener("click", function () {
+        popup.classList.remove("active");
+        document.querySelector("#contact").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+
+    popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+            popup.classList.remove("active");
+        }
+    });
+
+    // Mobile nav toggle
+    const toggleButton = document.getElementById("mobile-nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (toggleButton) {
+        toggleButton.addEventListener("click", function () {
+            if (navMenu) {
+                navMenu.classList.toggle("active");
+                console.log("Mobile menu toggled");
+            } else {
+                console.error("Navigation menu element not found");
+            }
+        });
+    } else {
+        console.error("Toggle button not found");
+    }
+
+    // Dropdowns for mobile view
+    const dropdowns = document.querySelectorAll(".dropdown");
+    dropdowns.forEach(function (dropdown) {
+        const link = dropdown.querySelector("a");
+        if (link) {
+            link.addEventListener("click", function (e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle("active");
+                }
+            });
+        }
+    });
+
+    // Read More buttons
+    const readMoreBtns = document.querySelectorAll(".read-more-btn");
+    readMoreBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const shortText = this.parentElement.querySelector(".short-text");
+            const fullText = this.parentElement.querySelector(".full-text");
+
+            shortText.classList.toggle("hidden");
+            fullText.classList.toggle("hidden");
+
+            this.textContent = this.textContent === "Read More" ? "Read Less" : "Read More";
+        });
+    });
+});
